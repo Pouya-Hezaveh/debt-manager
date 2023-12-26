@@ -1,21 +1,26 @@
 // server/index.js
 
-const express = require("express");
-const { env } = require("process");
-
-const PORT = process.env.PORT || 3001;
-
+const express = require('express');
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("<h1>THIS IS THE MAIN WEBPAGE.</h1>");
-  console.log(" * new root request!");
-});
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-  console.log(" * new API request!");
-});
+const api = require("./api");
+app.use('/api', api); // Mount the API routes from api.js at the /api base path
 
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+const pool = require('./config/db');
+async function runQuery(the_query) {
+  const client = await pool.connect();
+  try {
+    const relation = await client.query(query);
+    console.log('The Fetched Relation From DB');
+    console.log(relation.rows);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    client.release();
+  }
+}
