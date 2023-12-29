@@ -1,9 +1,17 @@
 import './App.css';
-import HelloWorld from './HelloWorld';
+import Body from './Body';
 
 function App() {
   return (
-    <HelloWorld/>
+    <div className = "App">
+      
+      <header/>
+
+      <Body/>
+
+      <footer/>
+
+    </div>
   );
 }
 

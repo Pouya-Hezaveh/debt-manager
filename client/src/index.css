@@ -12,3 +12,8 @@ code {
     monospace;
     color: aquamarine;
 }
+
+.text-persian{
+  text-align: right;
+  margin: 20px;
+}

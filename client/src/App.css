@@ -2,6 +2,29 @@
   text-align: center;
 }
 
+
+.App-header {
+  background-color: #282c34;
+  min-height: 0vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-main {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,17 +36,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -32,7 +44,34 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
+  }
+}
+
+.vibrating-rotating-element {
+  animation: vibration-rotation 5s infinite;
+}
+
+@keyframes vibration-rotation {
+  0% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+
+  25% {
+    transform: rotate(90deg) translate(-5px, 5px);
+  }
+
+  50% {
+    transform: rotate(180) translate(0px, 0px);
+  }
+
+  75% {
+    transform: rotate(270deg) translate(5px, -5px);
+  }
+
+  100% {
+    transform: rotate(360deg) translate(0px, 0px);
   }
 }
