@@ -1,13 +1,14 @@
-.form{
-  border: 10px solid darkslateblue;
-  border-radius: 10px;
+.form {
+  box-shadow: 0px 0px 20px orchid;
+  border: 1px solid darkslateblue;
+  border-radius: 8px;
   background-color: #282c44;
 }
 
 .text-area {
   width: auto;
   font-size: 100%;
-  margin: 0px 20px;
+  margin: 0px 30px;
   padding: 10px 20px;
   box-sizing: border-box;
   border: 3px solid #145898;
@@ -50,4 +51,30 @@
 
 .button:active {
   background-color: yellowgreen;
+}
+
+.vibrating-rotating-element {
+  animation: vibration-rotation 5s infinite;
+}
+
+@keyframes vibration-rotation {
+  0% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+
+  25% {
+    transform: rotate(90deg) translate(-5px, 5px);
+  }
+
+  50% {
+    transform: rotate(180) translate(0px, 0px);
+  }
+
+  75% {
+    transform: rotate(270deg) translate(5px, -5px);
+  }
+
+  100% {
+    transform: rotate(360deg) translate(0px, 0px);
+  }
 }

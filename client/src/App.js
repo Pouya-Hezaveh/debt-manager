@@ -3,7 +3,7 @@ import Body from './Body';
 
 function App() {
   return (
-    <div className = "App">
+    <div className = "App App-base">
       
       <header/>
 

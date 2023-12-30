@@ -8,7 +8,6 @@ function LoginPage({ onLogin }) {
   const [password, setPassword] = useState("");
 
   function handleSubmit(event) {
-    event.preventDefault();
     onLogin({ username, password });
   }
 
@@ -17,7 +16,7 @@ function LoginPage({ onLogin }) {
       <img src={logo} className="App-logo vibrating-rotating-element" alt="logo" />
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          <p className="text-persian">
+          <p className="text-persian text-shadow">
             شناسه کاربری
           </p>
           <input
@@ -29,7 +28,7 @@ function LoginPage({ onLogin }) {
         </label>
         <br />
         <label>
-          <p className="text-persian">
+          <p className="text-persian text-shadow">
             گذرواژه
           </p>
           <input

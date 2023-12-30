@@ -17,3 +17,7 @@ code {
   text-align: right;
   margin: 20px;
 }
+
+.text-shadow{
+  text-shadow: 0px 0px 3px orchid;
+}

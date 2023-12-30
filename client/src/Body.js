@@ -1,7 +1,7 @@
 import React from "react";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import LoginPage from "./LoginPage.js";
-import WelcomePage from "./WelcomePage.js";
+import UserPanel from "./UserPanel/UserPanel.js";
 
 function Body() {
     const [cookies, setCookie] = useCookies(["user"]);
@@ -11,15 +11,13 @@ function Body() {
     }
 
     return (
-        <CookiesProvider>
-            <div>
-                {cookies.user ? (
-                    <WelcomePage user={cookies.user} />
-                ) : (
-                    <LoginPage onLogin={handleLogin} />
-                )}
-            </div>
-        </CookiesProvider>
+        <>
+            {cookies.user ? (
+                <UserPanel user={cookies.user} />
+            ) : (
+                <LoginPage onLogin={handleLogin} />
+            )}
+        </>
     );
 }
 
