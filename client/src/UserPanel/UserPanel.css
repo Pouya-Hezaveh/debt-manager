@@ -1,0 +1,19 @@
+.button-logout{
+    float: left;
+    margin: 20px;
+    padding: 10px 10px;
+    border-radius: 100px;
+    background-color: #d2506e;
+    border-color: goldenrod;
+}
+
+.button-logout:hover{
+    box-shadow: 0px 1px 10px orange;
+    background-color: tomato;
+}
+
+.logout-logo {
+    height: 5vmin;
+    pointer-events: none;
+  }
+

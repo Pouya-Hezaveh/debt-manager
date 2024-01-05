@@ -1,13 +1,13 @@
 .form {
-  box-shadow: 0px 0px 20px orchid;
-  border: 1px solid darkslateblue;
-  border-radius: 8px;
-  background-color: #282c44;
+  border: 20px solid #7949a6; 
+  border-radius: 80px;
+  border-style: dashed;
+  background-color: #282c34;
 }
 
 .text-area {
   width: auto;
-  font-size: 100%;
+  font-size: 100%;  
   margin: 0px 30px;
   padding: 10px 20px;
   box-sizing: border-box;
@@ -19,8 +19,7 @@
 }
 
 .button {
-  background: #a7d250;
-  border: 1px solid #97ff42;
+  background: yellowgreen;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
   box-sizing: border-box;
@@ -44,13 +43,12 @@
   vertical-align: middle;
 }
 
-.button:hover,
-.button:active {
-  opacity: 80%;
+.button:hover{
+  box-shadow: 0px 2px 10px yellowgreen;
 }
 
 .button:active {
-  background-color: yellowgreen;
+  opacity: 80%;
 }
 
 .vibrating-rotating-element {

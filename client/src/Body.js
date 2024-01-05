@@ -4,16 +4,20 @@ import LoginPage from "./LoginPage.js";
 import UserPanel from "./UserPanel/UserPanel.js";
 
 function Body() {
-    const [cookies, setCookie] = useCookies(["user"]);
+    const [cookies, setCookie, removeCookies] = useCookies(["user"]);
 
     function handleLogin(user) {
-        setCookie("user", user, { path: "/" });
+        setCookie("user", user);
+    }
+
+    function handleLogout(user) {
+        removeCookies("user", user);
     }
 
     return (
         <>
             {cookies.user ? (
-                <UserPanel user={cookies.user} />
+                <UserPanel user={cookies.user} onLogout={handleLogout} />
             ) : (
                 <LoginPage onLogin={handleLogin} />
             )}
