@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
     console.log(" * new root request!");
 });
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
     console.log(" * new API request!");
 });

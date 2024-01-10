@@ -1,12 +1,14 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import LoginPage from "./LoginPage.js";
-import UserPanel from "./UserPanel/UserPanel.js";
+import LoginPage from "./LoginPage/LoginPage";
+import UserPanel from "./UserPanel/UserPanel";
 
 function Body() {
     const [cookies, setCookie, removeCookies] = useCookies(["user"]);
 
     function handleLogin(user) {
+        //! fetch(..)
+        user.type =
         setCookie("user", user);
     }
 

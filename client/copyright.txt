@@ -1,2 +1,2 @@
 Sources of my contents:
-The logout icon in directory "client/src/UserPanel/logout.svg" is derived from website: https://www.svgrepo.com/
+The logout icon in directory "client/src/App/Body/UserPanel/logout.svg" is derived from website: https://www.svgrepo.com/

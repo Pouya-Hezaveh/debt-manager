@@ -12,3 +12,4 @@ app.listen(PORT, () => {
 });
 
 const dbClient = require('./pgClient');
+dbClient.isPasswordCorrect('1234567890', '0').then((r) => console.log(r));

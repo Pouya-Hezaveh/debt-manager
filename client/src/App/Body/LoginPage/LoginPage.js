@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import '../../../index.css';
 import './LoginPage.css';
-import './index.css';
 import logo from './logo.svg';
 
 function LoginPage({ onLogin }) {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(event) {
-    onLogin({ username, password });
+    onLogin({ name, password });
   }
 
   return (
@@ -21,9 +21,9 @@ function LoginPage({ onLogin }) {
           </p>
           <input
             type="text"
-            value={username}
+            value={name}
             className="text-area"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </label>
         <br />
