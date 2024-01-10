@@ -1,5 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
+import { postToBackend } from "../../userApi";
 import LoginPage from "./LoginPage/LoginPage";
 import UserPanel from "./UserPanel/UserPanel";
 
@@ -7,8 +8,8 @@ function Body() {
     const [cookies, setCookie, removeCookies] = useCookies(["user"]);
 
     function handleLogin(user) {
-        //! fetch(..)
-        user.type =
+        console.log("AJAB");
+        postToBackend(user);
         setCookie("user", user);
     }
 

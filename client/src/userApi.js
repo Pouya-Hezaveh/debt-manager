@@ -1,12 +1,8 @@
-const sendDataToBackend = async () => {
-    const dataToSend = {
-        name: 'John Doe',
-        email: 'johndoe@example.com'
-        // Other data fields...
-    };
+export async function postToBackend(dataToSend) {
+    console.log("SHIT");
 
     try {
-        const response = await fetch('http://your-backend-api.com/data-endpoint', {
+        const response = await fetch('localhost:3001/api/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

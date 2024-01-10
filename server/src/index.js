@@ -10,6 +10,3 @@ const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
-
-const dbClient = require('./pgClient');
-dbClient.isPasswordCorrect('1234567890', '0').then((r) => console.log(r));
