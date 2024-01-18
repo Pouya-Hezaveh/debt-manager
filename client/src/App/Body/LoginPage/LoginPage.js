@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LabelText from "../../../components/LabelText";
 import '../../../index.css';
 import './LoginPage.css';
 import logo from './logo.svg';
@@ -16,9 +17,7 @@ function LoginPage({ onLogin }) {
       <img src={logo} className="App-logo vibrating-rotating-element" alt="logo" />
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          <p className="text-persian text-shadow">
-            شناسه کاربری
-          </p>
+          <LabelText theText={'شناسه کاربری'} />
           <input
             type="text"
             value={name}
@@ -28,9 +27,7 @@ function LoginPage({ onLogin }) {
         </label>
         <br />
         <label>
-          <p className="text-persian text-shadow">
-            گذرواژه
-          </p>
+          <LabelText theText={'شناسه کاربری'} />
           <input
             type="password"
             value={password}

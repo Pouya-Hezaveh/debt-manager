@@ -10,8 +10,8 @@ app.post('/post', (req, res) => {
     res.json({ message: 'Data received and processed successfully' });
 });
 /*
-    const askDataBase = require('./pgClient');
-    askDataBase.isPasswordCorrect('1234567890', '0').then((r) => console.log(r));
+*   const askDataBase = require('./pgClient');
+*   askDataBase.isPasswordCorrect('1234567890', '0').then((r) => console.log(r));
 */
 
 app.get("/", (req, res) => {

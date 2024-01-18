@@ -8,7 +8,6 @@ function Body() {
     const [cookies, setCookie, removeCookies] = useCookies(["user"]);
 
     function handleLogin(user) {
-        console.log("AJAB");
         postToBackend(user);
         setCookie("user", user);
     }

@@ -2,14 +2,14 @@
   text-align: center;
 }
 
-
 .App-header {
-  background-color: #282c34;
-  width: 100%;
+  box-sizing: border-box;
+  border-bottom: dashed 15px #7949a6;
+  margin: 10px;
+  width: 100vw;
   min-height: 0vh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -20,7 +20,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }

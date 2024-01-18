@@ -1,0 +1,9 @@
+.text-shadow{
+    text-shadow: 0px 0px 5px orchid;
+  }
+
+.persian-text{
+  direction: rtl;
+  text-align: right;
+  margin: 20px;
+}

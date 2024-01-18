@@ -1,5 +1,6 @@
-.button-logout{
-    float: left;
+.button-logout {
+    display: flex;
+    float: right;
     margin: 20px;
     padding: 10px 10px;
     border-radius: 100px;
@@ -7,7 +8,7 @@
     border-color: goldenrod;
 }
 
-.button-logout:hover{
+.button-logout:hover {
     box-shadow: 0px 1px 10px orange;
     background-color: tomato;
 }
@@ -15,5 +16,46 @@
 .logout-logo {
     height: 5vmin;
     pointer-events: none;
-  }
+}
 
+.account-bar {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.username {
+    color: pink;
+    box-shadow: 0px 0px 6px palevioletred;
+    text-shadow: 0px 0px 5px orchid;
+    background-color: black;
+    border-width: 2px;
+    border-radius: 20px;
+    border-style: double;
+    border-color: rgba(255, 192, 203, 0.6);
+}
+
+.message {
+    float: right;
+    width: fit-content;
+    opacity: 0;
+    -webkit-animation: fadeOut 10s;
+    animation: fadeOut 10s;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+        color: coral;
+    }
+
+    50% {
+        opacity: 1;
+        color: pink;
+    }
+
+    100% {
+        opacity: 0;
+        color: #E31C79;
+    }
+}
