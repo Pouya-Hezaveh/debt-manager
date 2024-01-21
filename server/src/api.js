@@ -7,8 +7,10 @@ app.post('/post', (req, res) => {
     const receivedData = req.body;
     // Process the received data (e.g., save to a database)
     // Send back a response
+    console.log(receivedData);
     res.json({ message: 'Data received and processed successfully' });
 });
+
 /*
 *   const askDataBase = require('./pgClient');
 *   askDataBase.isPasswordCorrect('1234567890', '0').then((r) => console.log(r));

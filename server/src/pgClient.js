@@ -1,24 +1,19 @@
 const pg_config = require('../config/pg.js');
 const pg = require('pg');
+const { response } = require('./api.js');
 async function runQuery(the_query) {
-  const pool = new pg.Pool(pg_config);
-  return new Promise((resolve) => {
-    pool.connect((err, client, done) => {
-      if (err) throw err;
-      client.query(the_query, (err, res) => {
-        client.end();
-        pool.end();
-        if (err)
-          console.log(err.stack);
-        else {
-          //  res.rows is the SQL response.
-          response = JSON.stringify(res.rows).replace(/\s/g, '');
-          console.log("#", response);
-          resolve(response)
-        }
-      })
-    })
-  })
+    const client = new pg.Client(pg_config);
+
+    await client.connect();
+
+    res = await client.query(the_query);
+
+    const response = await JSON.stringify(res.rows).replace(/\s/g, '');
+    console.log(response)
+
+    client.end()
+
+    return response
 };
 
 async function isPasswordCorrect(id, password) {
