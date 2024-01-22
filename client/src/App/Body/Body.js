@@ -8,18 +8,18 @@ function Body() {
     const [cookies, setCookie, removeCookies] = useCookies(["user"]);
 
     function handleLogin(user) {
-        //setCookie("user", user);
-        let book = {
-            BookId: 1,
-            Title: "coolBook",
-            Author: "Me"
-        }
-
-        axios
-            .post('http://localhost:3001/api/create', book)
-            .then(() => console.log('Book Created'))
+        axios.post('http://localhost:3001/api/login', user)
+            .then((res) => {
+                if (res.data != null) {
+                    setCookie("user", JSON.parse(res.data));
+                }
+                else{
+                    setCookie("user", user);
+                }
+            })
             .catch(err => {
                 console.error(err);
+
             });
     }
 

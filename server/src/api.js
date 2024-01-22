@@ -1,20 +1,21 @@
 const express = require('express');
 const app = express();
 
-// Define a route to handle the incoming data
-app.post('/post', (req, res) => {
-    console.log(" * new post API request!")
-    const receivedData = req.body;
-    // Process the received data (e.g., save to a database)
-    // Send back a response
-    console.log(receivedData);
-    res.json({ message: 'Data received and processed successfully' });
-});
+// Enable to receive mail requests:
+app.use(express.json());
+const cors = require('cors');
+app.use(
+    cors({
+        origin: 'http://localhost:3000',
+        credentials: true,
+    })
+);
 
-/*
-*   const askDataBase = require('./pgClient');
-*   askDataBase.isPasswordCorrect('1234567890', '0').then((r) => console.log(r));
-*/
+const askDataBase = require('./pgClient');
+app.post('/login', function (req, res) {
+    console.log("### login request:", req.body);
+    res.send("x")
+})
 
 app.get("/", (req, res) => {
     res.send("<h1>THIS IS THE MAIN API ROOT.</h1>");

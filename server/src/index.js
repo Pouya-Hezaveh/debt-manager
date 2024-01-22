@@ -3,22 +3,9 @@
 const express = require('express');
 const app = express();
 
-// Initializing:
-const cors = require('cors');
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })
-);
-app.use(express.json());
-
 // Setting up application programming interface:
 const api = require("./api");
 app.use('/api', api); // Mount the API routes from api.js at the /api base path
-
-// Setting up the database interface:
-const { runQuery } = require('./pgClient');
 
 // Running the server:
 const PORT = 3001;

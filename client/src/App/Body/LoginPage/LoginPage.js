@@ -5,11 +5,11 @@ import './LoginPage.css';
 import logo from './logo.svg';
 
 function LoginPage({ onLogin }) {
-  const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(event) {
-    onLogin({ name, password });
+    onLogin({ id, password });
   }
 
   return (
@@ -20,9 +20,9 @@ function LoginPage({ onLogin }) {
           <LabelText theText={'شناسه کاربری'} />
           <input
             type="text"
-            value={name}
+            value={id}
             className="text-area"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setId(e.target.value)}
           />
         </label>
         <br />
