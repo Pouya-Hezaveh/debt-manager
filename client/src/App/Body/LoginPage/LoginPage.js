@@ -19,19 +19,24 @@ function LoginPage({ onLogin }) {
         <label>
           <LabelText theText={'شناسه کاربری'} />
           <input
+            id="name"
             type="text"
             value={id}
             className="text-area"
+            autocomplete="username"
             onChange={(e) => setId(e.target.value)}
+            
           />
         </label>
         <br />
         <label>
-          <LabelText theText={'شناسه کاربری'} />
+          <LabelText theText={'گذرواژه'} />
           <input
+            id="password"
             type="password"
             value={password}
             className="text-area"
+            autocomplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
