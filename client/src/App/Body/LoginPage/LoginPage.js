@@ -9,6 +9,10 @@ function LoginPage({ onLogin }) {
   const [password, setPassword] = useState("");
 
   function handleSubmit(event) {
+    // | | |  Be khatere naneveshtane in yek khat code ke hanoozam nemidoonam
+    // V V V  daghighan chikar mikone ghashang yek hafte kamel az zendegim be fana raft.
+    event.preventDefault();
+    // ^^^^^^^^^^^^^^^^^^^^
     onLogin({ id, password });
   }
 
@@ -17,15 +21,15 @@ function LoginPage({ onLogin }) {
       <img src={logo} className="App-logo vibrating-rotating-element" alt="logo" />
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          <LabelText theText={'شناسه کاربری'} />
+          <LabelText theText={'شناسه کاربری (کد ملی)'} />
           <input
             id="name"
             type="text"
             value={id}
             className="text-area"
-            autocomplete="username"
+            autoComplete="username"
             onChange={(e) => setId(e.target.value)}
-            
+
           />
         </label>
         <br />
@@ -36,7 +40,7 @@ function LoginPage({ onLogin }) {
             type="password"
             value={password}
             className="text-area"
-            autocomplete="current-password"
+            autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>

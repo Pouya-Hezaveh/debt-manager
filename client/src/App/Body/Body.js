@@ -1,56 +1,32 @@
 import axios from 'axios';
-import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import LoginPage from "./LoginPage/LoginPage";
 import UserPanel from "./UserPanel/UserPanel";
 
 function Body() {
-    const [cookies, setCookie, removeCookies] = useCookies(["account"]);
-    const [account, setAccount] = useState(null);
-
-    useEffect(() => {
-        if (account == null)
-            removeCookies("account")
-        else
-            setCookie("account", account);
-    }, [account, removeCookies, setCookie]);
+    const [cookies, setCookie, removeCookies] = useCookies(['account']);
 
     function handleLogin(user) {
-        axios.post('http://localhost:3001/api/login', user)
-            .then((res) => {
-                setAccount(res.data)
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            });
-        /*
-        axios.post('http://localhost:3001/api/login', user)
-            .then((res) => {
-                if (res.data != null) {
-                    setAccount(res.data)
-                    setCookie("account", account);
-                }
-            })
-            .catch(err => {
-                console.error(err);
-            });
-        */
-        /*
-         setAccount(axios.post('http://localhost:3001/api/login', user).data)
-         setCookie("account", account)
-         */
+        console.log(user);
+        axios.post('http://localhost:3001/api/login', user).then((res) => {
+            console.log("recieved data from Login API: ", res.data)
+            console.log("Type of that data: ", typeof res.data)
+            if (res.data == null)
+                alert("گذرواژه اشتباه می‌باشد.")
+            else
+                setCookie('account', res.data)
+        });
+        //setCookie('account', {id: 'admin', password: '123', name: 'Pouya', type: 'ADMIN'});
     }
 
-    function handleLogout(account) {
-        removeCookies("account", account);
-        setAccount(null);
+    function handleLogout() {
+        removeCookies('account');
     }
 
     return (
         <>
             {cookies.account ? (
-                <UserPanel user={cookies.account} onLogout={handleLogout} />
+                <UserPanel account={cookies.account} onLogout={handleLogout} />
             ) : (
                 <LoginPage onLogin={handleLogin} />
             )}

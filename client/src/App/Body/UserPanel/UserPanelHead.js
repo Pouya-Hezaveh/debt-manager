@@ -6,14 +6,15 @@ import './UserPanelHead.css';
 import logout_logo from './logout.svg';
 
 function UserPanelHead({ account, onLogout }) {
+  
   return (
     <div className="App-header">
       <div className='account-bar'>
-        <button class="button button-logout" onClick={onLogout}>
+        <button className="button button-logout" onClick={onLogout}>
           <img src={logout_logo} className='logout-logo' alt="logout" />
         </button>
         <div className="username">
-          <LabelText theText={'نام کاربری: '+account.name} fontSize={"0.8em"} margin={"15px"}/>
+          <LabelText theText={'نام کاربر: '+account.name} fontSize={"0.8em"} margin={"15px"}/>
         </div>
           <p className="persian-text message">به پنل خود خوش آمدید!</p>
       </div>

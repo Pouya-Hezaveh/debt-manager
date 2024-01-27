@@ -15,16 +15,16 @@ const askDataBase = require('./pgClient');
 app.post('/login', function (req, res) {
     console.log("### login request:", req.body);
     // checks the database if such user does exist.
-    askDataBase.isPasswordCorrect(req.body.id, req.body.password).then((r) => {
+    askDataBase.isPasswordCorrect(req.body.id, req.body.password).then((answer) => {
         // send the account info to the client if the password is incorrect.
-        if(r === true){
+        if(answer === true){
             console.log(">>> Password is correct :)");
-            askDataBase.getUserById(req.body.id).then((r)=>JSON.stringify(r)).then((r) => res.send(r))
+            askDataBase.getUserById(req.body.id).then((r) => res.send(r))
         }
         // else send null to the client
         else{
             console.log(">>> Password is incorrect :X");
-            res.send(null)
+            res.send('null')
         }
     });
 })
