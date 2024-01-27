@@ -12,7 +12,7 @@ function Body() {
             console.log("recieved data from Login API: ", res.data)
             console.log("Type of that data: ", typeof res.data)
             if (res.data == null)
-                alert("گذرواژه اشتباه می‌باشد.")
+                alert("شناسه کاربری یا گذرواژه اشتباه می‌باشد.")
             else
                 setCookie('account', res.data)
         });

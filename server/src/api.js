@@ -1,18 +1,21 @@
 const express = require('express');
 const app = express();
 
-// Enable to receive mail requests:
+// Enable to receive requests:
 app.use(express.json());
 const cors = require('cors');
 app.use(
     cors({
-        origin: 'http://localhost:3000',
+        origin: 'http://localhost:3001',
         credentials: true,
     })
 );
 
+//------------------------------------------------------------------------------
 const askDataBase = require('./pgClient');
+
 app.post('/login', function (req, res) {
+    
     console.log("### login request:", req.body);
     // checks the database if such user does exist.
     askDataBase.isPasswordCorrect(req.body.id, req.body.password).then((answer) => {

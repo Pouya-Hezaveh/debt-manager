@@ -12,7 +12,7 @@ function LoginPage({ onLogin }) {
     // | | |  Be khatere naneveshtane in yek khat code ke hanoozam nemidoonam
     // V V V  daghighan chikar mikone ghashang yek hafte kamel az zendegim be fana raft.
     event.preventDefault();
-    // ^^^^^^^^^^^^^^^^^^^^
+    //^^^^^^^^^^^^^^^^^^^^^
     onLogin({ id, password });
   }
 

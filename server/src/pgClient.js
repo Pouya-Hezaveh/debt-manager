@@ -1,4 +1,4 @@
-const pg_config = require('../../config/pg');
+const pg_config = require('../../config/pg.config');
 const pg = require('pg');
 async function runQuery(the_query) {
   const client = new pg.Client(pg_config);
