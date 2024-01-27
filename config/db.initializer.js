@@ -1,5 +1,5 @@
 const pg = require('pg');
-const {pg_config, admin_acc} = require('./pg.config');
+const { pg_config, admin_acc } = require('./pg.config');
 
 // This query initializes the database for this web application.
 const dbInitialization = `

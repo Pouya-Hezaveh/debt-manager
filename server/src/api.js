@@ -4,9 +4,10 @@ const app = express();
 // Enable to receive requests:
 app.use(express.json());
 const cors = require('cors');
+const {client_conf} = require('../../config/pg.config')
 app.use(
     cors({
-        origin: 'http://localhost:3001',
+        origin: client_conf.address,
         credentials: true,
     })
 );
@@ -15,7 +16,7 @@ app.use(
 const askDataBase = require('./pgClient');
 
 app.post('/login', function (req, res) {
-    
+
     console.log("### login request:", req.body);
     // checks the database if such user does exist.
     askDataBase.isPasswordCorrect(req.body.id, req.body.password).then((answer) => {

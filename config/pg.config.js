@@ -13,14 +13,20 @@ const pg_config = {
 };
 
 // admin account info that will be used for initializing the application:
-admin_acc = {
+const admin_acc = {
   id: 'admin', // shenase karbari baraye login
   password: 'admin', // ramz morede estefade baraye login
   name: 'Hesabdar', // This is OPTIONAL; The system will use this to say welcome :)
   type: 'ADMIN' // The account type determines the access level of the account.
 };
 
+// This is not optional; You should set the address of the client app.
+const client_conf = {
+  address: 'http://localhost:3000'
+}
+
 module.exports = {
+  client_conf,
   pg_config,
   admin_acc
 };
