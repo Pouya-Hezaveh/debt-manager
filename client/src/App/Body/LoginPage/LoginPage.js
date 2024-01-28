@@ -45,7 +45,7 @@ function LoginPage({ onLogin }) {
           />
         </label>
         <br />
-        <input className="button" type="submit" value="ورود" />
+        <input className="login-button" type="submit" value="ورود" />
       </form>
     </>
   );

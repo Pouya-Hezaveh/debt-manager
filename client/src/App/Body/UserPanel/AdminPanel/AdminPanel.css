@@ -1,0 +1,6 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    background-color: #331940;
+    justify-content: space-around;
+}

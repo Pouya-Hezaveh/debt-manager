@@ -10,7 +10,7 @@ function UserPanelHead({ account, onLogout }) {
   return (
     <div className="App-header">
       <div className='account-bar'>
-        <button className="button button-logout" onClick={onLogout}>
+        <button className="logout-button" onClick={onLogout}>
           <img src={logout_logo} className='logout-logo' alt="logout" />
         </button>
         <div className="username">
