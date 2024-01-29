@@ -1,11 +1,11 @@
 .button {
     margin: 10px;
     border-radius: 30px;
-    background-color: #445566;
+    background-color: slateblue;
     padding: 5px 10px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: white;
+    color: lightcyan;
     cursor: pointer;
     text-decoration: none;
     transition: all 1s;
@@ -13,7 +13,7 @@
 
 .button:hover {
     box-shadow: 0px 2px 10px #445566;
-    background-color: #95b1ae;
+    background-color: rgb(157, 146, 230);
     border-radius: 7px;
     color: rgb(22, 7, 36);
 }

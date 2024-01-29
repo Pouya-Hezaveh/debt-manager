@@ -1,6 +1,12 @@
 .navbar {
-    display: flex;
-    flex-direction: column;
+    margin: 20px;
+    width: fit-content;
+    display: block;
+    direction: rtl;
+    border: solid 10px blueviolet;
+    border-radius: 20px;
+    padding: 10px;
+    justify-content: right;
     background-color: #331940;
     justify-content: space-around;
 }

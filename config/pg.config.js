@@ -20,7 +20,7 @@ const admin_acc = {
   type: 'ADMIN' // The account type determines the access level of the account.
 };
 
-// This is not optional; You should set the address of the client app.
+// You should set the address of the client app to enable the server response to get requests.
 const client_conf = {
   address: 'http://localhost:3000'
 }
