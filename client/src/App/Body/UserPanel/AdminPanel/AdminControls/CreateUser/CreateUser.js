@@ -1,8 +1,9 @@
 import React from 'react'
+import Table from '../../../../../../components/Table'
 
 function CreateUser() {
   return (
-    <div>CreateUser</div>
+    <div><Table></Table></div>
   )
 }
 

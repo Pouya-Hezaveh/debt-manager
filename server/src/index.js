@@ -13,9 +13,6 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-/* The template for calling queries
-(async()=>{
-  const result = await  runQuery(`SELECT * FROM "USER"`);
-  console.log(JSON.parse(result));
-})();
-*/
+//  Testing...
+//const askDataBase = require('./pgClient');
+//askDataBase.deleteRow('USER', 'sorena2')
