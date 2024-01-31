@@ -33,7 +33,7 @@ async function isPasswordCorrect({ id, password }) {
 }
 
 async function isAdmin({ id, password }) {
-  const response = await runQuery(`SELECT type FROM "USER" WHERE id = '${id}' and password = '${password}`);
+  const response = await runQuery(`SELECT type FROM "USER" WHERE id = '${id}' and password = '${password}'`);
   console.log("$$$ db response to pgClient.isAdmin(): ", JSON.parse(response))
   if (response.length > 2 && JSON.parse(response)[0].type == 'ADMIN')
     return true
@@ -60,7 +60,7 @@ async function insertValues(table_name, values) {
     const response = await runQuery(`
       INSERT INTO "${table_name}" (${columns}) VALUES (${columnValues});
     `);
-    console.log(`$$$ ${values} successfully added to table ${table_name}: `, JSON.parse(response));
+    console.log(`$$$ ${columnValues} successfully added to table ${table_name}: `, JSON.parse(response));
     return JSON.parse(response);
   } catch (error) {
     if (error.code === '23505') {

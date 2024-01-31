@@ -1,0 +1,10 @@
+table {
+    margin: 1vw;
+    padding: 1vw;
+    border: solid 10px #445566;
+    border-radius: 10px;
+    direction: ltr;
+}
+td{
+    padding-inline: 2vw;
+}

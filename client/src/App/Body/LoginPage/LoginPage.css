@@ -1,6 +1,8 @@
 .form {
-  border: 20px solid #7949a6; 
-  border-radius: 80px;
+  width: auto;
+  margin: 10px;
+  border: 1vw solid #7949a6; 
+  border-radius: 40px;
   border-style: dashed;
   background-color: #282c34;
 }

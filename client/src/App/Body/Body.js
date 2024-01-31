@@ -9,7 +9,7 @@ function Body() {
 
     function handleLogin(user) {
         console.log(user);
-        axios.post(`${api_address}/api/login`, user).then((res) => {
+        axios.post(`${api_address}/login`, user).then((res) => {
             console.log("recieved data from Login API: ", res.data)
             console.log("Type of that data: ", typeof res.data)
             if (res.data == null)

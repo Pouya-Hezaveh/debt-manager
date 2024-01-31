@@ -3,26 +3,27 @@ import Button from '../../../../components/Button';
 import LabelText from '../../../../components/LabelText';
 import BillAssignment from './AdminControls/BillAssignment/BillAssignment';
 import CreateBill from './AdminControls/CreateBill/CreateBill';
-import CreateUser from './AdminControls/CreateUser/CreateUser';
+import ManageAccounts from './AdminControls/ManageAccounts/ManageAccounts';
 import Payment from './AdminControls/Payment/Payment';
 import './AdminPanel.css';
 
-function AdminPanel() {
+function AdminPanel({account}) {
   const [controller, setController] = useState('');
 
   function ReturnButton() {
     return (
-      <Button backColor={'indianred'} onClick={() => setController('')}>
+      <Button style={{ backgroundColor: 'indianred' }} onClick={() => setController('')}>
         <LabelText theText={'بازگشت'} />
       </Button>
     )
   }
+  
 
-  if (controller === 'CREATE_USER')
+  if (controller === 'MANAGE_ACCOUNTS')
     return (
       <div className="navbar">
         {ReturnButton()}
-        <CreateUser />
+        <ManageAccounts account={account}/>
       </div >
     )
 
@@ -54,7 +55,7 @@ function AdminPanel() {
     return (
       <div className="navbar">
         < LabelText fontSize={'2rem'} fontWeight={'bold'} theText={'پنل کنترل'} />
-        <Button onClick={() => setController('CREATE_USER')}><LabelText theText={'ایجاد کاربر جدید'} /></Button>
+        <Button onClick={() => setController('MANAGE_ACCOUNTS')}><LabelText theText={'مدیریت حساب ها'} /></Button>
         <Button onClick={() => setController('CREATE_BILL')}><LabelText theText={'ایجاد صورت حساب جدید'} /></Button>
         <Button onClick={() => setController('BILL_ASSIGNMENT')}><LabelText theText={'تخصیص صورت حساب موجود به کاربران'} /></Button>
         <Button onClick={() => setController('PAYMENT')}><LabelText theText={'ثبت بدهی پرداخت شده'} /></Button>

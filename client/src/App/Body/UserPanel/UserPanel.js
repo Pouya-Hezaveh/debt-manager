@@ -13,7 +13,7 @@ function UserPanel({ account, onLogout }) {
         <>
             <UserPanelHead account={account} onLogout={onLogout} />
             {account.type === 'ADMIN' ?
-                <AdminPanel />
+                <AdminPanel account={account}/>
                 :
                 <ClientPanel />
             }

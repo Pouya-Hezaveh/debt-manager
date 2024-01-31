@@ -13,22 +13,25 @@ app.use(
 );
 
 //----------Utility---Functions-------------------------------------------------
-function getTableWithColumns(table_name) {
-    let table = {}; // Use let instead of var to properly scope the variable
-    Promise.all([
+function getTableWithColumnNames(table_name) {
+    return new Promise((resolve, reject) => {
+      let table = {};
+      Promise.all([
         askDataBase.getColumnNames(table_name),
         askDataBase.getTable(table_name)
-    ]).then(([columns, rows]) => {
-        table.columns = columns;
+      ]).then(([columnNames, rows]) => {
+        table.columnNames = Object.values(columnNames);
         table.rows = rows;
-        res.send(table);
-        console.log(table);
-    }).catch(error => {
+        console.log("within getTableWithColumnNames(): ", table);
+        resolve(table); // Resolve the Promise with the table object
+      }).catch(error => {
         // Handle any errors here
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        reject(error); // Reject the Promise if there's an error
+      });
     });
-}
+  }
+  
 
 //------------------------------------------------------------------------------
 const askDataBase = require('./pgClient');
@@ -53,16 +56,23 @@ app.post('/login', function (req, res) {
 
 app.post('/create-user', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
-    if (askDataBase.isItAdmin(req.body.key)) {
+    if (askDataBase.isAdmin(req.body.key)) {
         // req.body.newAccount must be like: {name: "", password: "", name: "", type: ""}
-        askDataBase.insertValues('USER', req.body.newAccount)
+        askDataBase.insertValues('USER', req.body.newAccount).then((r) =>res.send(r))
     }
 })
 
 app.post('/get-users', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
-    if (askDataBase.isItAdmin(req.body.key)) {
-        getTableWithColumns('USER').then()
+    if (askDataBase.isAdmin(req.body.key)) {
+        getTableWithColumnNames('USER').then((r) => res.send(r))
+    }
+});
+
+app.post('/delete-user', function (req, res) {
+    // req.body.key must be like: {id: "", password: ""}
+    if (askDataBase.isAdmin(req.body.key)) {
+        askDataBase.deleteRow('USER',req.body.id).then((r) => res.send(r))
     }
 });
 
