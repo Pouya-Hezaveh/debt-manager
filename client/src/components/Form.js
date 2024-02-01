@@ -43,7 +43,7 @@ function Form({ formData, handleSubmit }) {
               <input
                 type="text"
                 value={formValues[key] || ''}
-                className="text-area persian-text"
+                className="input-text-area"
                 onChange={(e) => handleInputChange(key, e.target.value)}
               />
             )}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../../../components/AppText.css';
 import LabelText from "../../../components/LabelText";
 import '../../../index.css';
 import './LoginPage.css';
@@ -26,7 +27,7 @@ function LoginPage({ onLogin }) {
             id="name"
             type="text"
             value={id}
-            className="text-area"
+            className="input-text-area"
             autoComplete="username"
             onChange={(e) => setId(e.target.value)}
 
@@ -39,7 +40,7 @@ function LoginPage({ onLogin }) {
             id="password"
             type="password"
             value={password}
-            className="text-area"
+            className="input-text-area"
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
           />

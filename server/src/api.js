@@ -31,7 +31,12 @@ function getTableWithColumnNames(table_name) {
       });
     });
   }
-  
+
+
+const crypto = require('crypto');
+  function getRandomUUID(){
+    return crypto.randomUUID()
+  }
 
 //------------------------------------------------------------------------------
 const askDataBase = require('./pgClient');
@@ -73,6 +78,34 @@ app.post('/delete-user', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
     if (askDataBase.isAdmin(req.body.key)) {
         askDataBase.deleteRow('USER',req.body.id).then((r) => res.send(r))
+    }
+});
+
+app.post('/create-bill', function (req, res) {
+    // req.body.key must be like: {id: "", password: ""}
+    if (askDataBase.isAdmin(req.body.key)) {
+        const crypto = require('crypto');
+        console.log(crypto.randomUUID());
+
+        // req.body.newDate must be like: {id: "(uuid)", password: "", name: "", type: ""}
+        askDataBase.insertValues('DATE', req.body.newDate).then((r) =>res.send(r))
+
+        // req.body.newBill must be like: {name: "", password: "", name: "", type: ""}
+        askDataBase.insertValues('BILL', req.body.newBill).then((r) =>res.send(r))
+    }
+})
+
+app.post('/create-bill', function (req, res) {
+    // req.body.key must be like: {id: "", password: ""}
+    if (askDataBase.isAdmin(req.body.key)) {
+        getTableWithColumnNames('BILL').then((r) => res.send(r))
+    }
+});
+
+app.post('/get-bills', function (req, res) {
+    // req.body.key must be like: {id: "", password: ""}
+    if (askDataBase.isAdmin(req.body.key)) {
+        getTableWithColumnNames('BILL').then((r) => res.send(r))
     }
 });
 

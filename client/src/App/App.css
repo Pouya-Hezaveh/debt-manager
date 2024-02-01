@@ -6,7 +6,7 @@
   box-sizing: border-box;
   border-bottom: dashed 15px #7949a6;
   margin: 10px;
-  width: 100vw;
+  width: 90vw;
   min-height: 0vh;
   flex-direction: column;
   align-items: center;
