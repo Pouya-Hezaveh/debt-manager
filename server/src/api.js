@@ -13,30 +13,41 @@ app.use(
 );
 
 //----------Utility---Functions-------------------------------------------------
+const crypto = require('crypto');
+function getRandomUUID() {
+    return crypto.randomUUID()
+}
+
+function getCurrentTime() {
+    const now = new Date();
+    return {
+        year: now.getFullYear(),
+        month: now.getMonth() + 1, // Adding 1 to get the month in the range 1-12
+        day: now.getDate(),
+        hour: now.getHours(),
+        minute: now.getMinutes(),
+        second: now.getSeconds()
+    };
+}
+
 function getTableWithColumnNames(table_name) {
     return new Promise((resolve, reject) => {
-      let table = {};
-      Promise.all([
-        askDataBase.getColumnNames(table_name),
-        askDataBase.getTable(table_name)
-      ]).then(([columnNames, rows]) => {
-        table.columnNames = Object.values(columnNames);
-        table.rows = rows;
-        console.log("within getTableWithColumnNames(): ", table);
-        resolve(table); // Resolve the Promise with the table object
-      }).catch(error => {
-        // Handle any errors here
-        console.error(error);
-        reject(error); // Reject the Promise if there's an error
-      });
+        let table = {};
+        Promise.all([
+            askDataBase.getColumnNames(table_name),
+            askDataBase.getTable(table_name)
+        ]).then(([columnNames, rows]) => {
+            table.columnNames = Object.values(columnNames);
+            table.rows = rows;
+            console.log("within getTableWithColumnNames(): ", table);
+            resolve(table); // Resolve the Promise with the table object
+        }).catch(error => {
+            // Handle any errors here
+            console.error(error);
+            reject(error); // Reject the Promise if there's an error
+        });
     });
-  }
-
-
-const crypto = require('crypto');
-  function getRandomUUID(){
-    return crypto.randomUUID()
-  }
+};
 
 //------------------------------------------------------------------------------
 const askDataBase = require('./pgClient');
@@ -63,7 +74,7 @@ app.post('/create-user', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
     if (askDataBase.isAdmin(req.body.key)) {
         // req.body.newAccount must be like: {name: "", password: "", name: "", type: ""}
-        askDataBase.insertValues('USER', req.body.newAccount).then((r) =>res.send(r))
+        askDataBase.insertValues('USER', req.body.newAccount).then((r) => res.send(r))
     }
 })
 
@@ -77,30 +88,29 @@ app.post('/get-users', function (req, res) {
 app.post('/delete-user', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
     if (askDataBase.isAdmin(req.body.key)) {
-        askDataBase.deleteRow('USER',req.body.id).then((r) => res.send(r))
+        askDataBase.deleteRow('USER', req.body.id).then((r) => res.send(r))
     }
 });
-
+/*
+SELECT *
+FROM "USER"
+INNER JOIN "BILLING_RECORD" ON "USER.id" = "BILLING_RECORD.user_id"
+INNER JOIN "BILL" ON "BILLING_RECORD.bill_id" = "BILL.id";
+*/
 app.post('/create-bill', function (req, res) {
+    const dateID = getRandomUUID();
     // req.body.key must be like: {id: "", password: ""}
     if (askDataBase.isAdmin(req.body.key)) {
-        const crypto = require('crypto');
-        console.log(crypto.randomUUID());
-
         // req.body.newDate must be like: {id: "(uuid)", password: "", name: "", type: ""}
-        askDataBase.insertValues('DATE', req.body.newDate).then((r) =>res.send(r))
+        if (billDate)
+            askDataBase.insertValues('DATE', { id: dateID, ...req.body.newDate })
+        else
+            askDataBase.insertValues('DATE', { id: dateID, ...getCurrentTime() })
 
         // req.body.newBill must be like: {name: "", password: "", name: "", type: ""}
-        askDataBase.insertValues('BILL', req.body.newBill).then((r) =>res.send(r))
+        askDataBase.insertValues('BILL', { date_id: dateID, ...req.body.newBill}).then((r) => res.send(r))
     }
 })
-
-app.post('/create-bill', function (req, res) {
-    // req.body.key must be like: {id: "", password: ""}
-    if (askDataBase.isAdmin(req.body.key)) {
-        getTableWithColumnNames('BILL').then((r) => res.send(r))
-    }
-});
 
 app.post('/get-bills', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
@@ -115,7 +125,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+    res.json({ message: "Hello from server!", mode: "test" });
     console.log(" * new API request!");
 });
 
