@@ -41,7 +41,7 @@ function ManageAccounts({ account }) {
   return (
     <div>
       <CreateAccount account={account} fetchData={fetchData}/>
-      <Table columnNames={table.columnNames} rows={table.rows} handleDelete={handleDelete} />
+      <Table columnNames={table.columnNames} rows={table.rows} handleDelete={handleDelete}/>
     </div>
   );
 }

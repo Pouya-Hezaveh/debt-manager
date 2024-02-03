@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS public."DATE"
     month integer NOT NULL,
     day integer NOT NULL,
     hour integer NOT NULL,
+    minute integer NOT NULL,
     second integer NOT NULL,
     PRIMARY KEY (id)
 );

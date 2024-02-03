@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AppText.css';
 import LabelText from './LabelText';
 
-function Form({ formData, handleSubmit }) {
+function Form({ formData, handleSubmit, noButton }) {
   const [formValues, setFormValues] = useState({});
 
   const handleInputChange = (key, value) => {
@@ -13,6 +13,12 @@ function Form({ formData, handleSubmit }) {
     event.preventDefault();
     handleSubmit(formValues);
   };
+
+  useEffect(() => {
+    if (noButton) {
+      handleSubmit(formValues);
+    }
+  }, [formValues, handleSubmit, noButton]);
 
   return (
     <form className="form" onSubmit={onSubmit} style={{ borderWidth: 'min-content', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -25,14 +31,14 @@ function Form({ formData, handleSubmit }) {
               <LabelText theText={formData[key]} />
             }
             {Array.isArray(formData[key][1]) ? (
-              <div style={{ display: 'flex', flexDirection: 'row-reverse'}}>
+              <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
                 {formData[key][1].map((option) => (
-                  <label key={option} style={{margin:'20px', borderRadius:'10px', padding:'10px', boxShadow:'0px 2px 20px hotpink'}}>
+                  <label key={option} style={{ margin: '20px', borderRadius: '10px', padding: '10px', boxShadow: '0px 2px 20px hotpink' }}>
                     <input
                       type="radio"
                       value={option}
                       checked={formValues[key] === option}
-                      style={{boxShadow:'0px 0px 10px violet' }}
+                      style={{ boxShadow: '0px 0px 10px violet' }}
                       onChange={(e) => handleInputChange(key, e.target.value)}
                     />
                     {option}
@@ -47,13 +53,11 @@ function Form({ formData, handleSubmit }) {
                 onChange={(e) => handleInputChange(key, e.target.value)}
               />
             )}
-
-
           </label>
           <br />
         </div>
       ))}
-      <input style={{ width: '8vw', height: '8vh' }} className="button" type="submit" value="ثبت" />
+      {noButton ? null : <input style={{ width: '8vw', height: '8vh' }} className="button" type="submit" value="ثبت" />}
     </form>
   );
 }

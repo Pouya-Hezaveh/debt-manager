@@ -1,30 +1,63 @@
 import React from 'react';
 import DeleteButton from './DeleteButton';
 import './Table.css';
+import ToggleButton from './ToggleButton';
 
-const Table = ({ columnNames, rows, handleDelete }) => {
+const Table = ({ columnNames, rows, handleSelect, handleDelete }) => {
   function onDeleteButton(id) {
     handleDelete(id);
   }
-
+  /*
+  function handleSelectAll() {
+    const allRowIds = rows.map((row) => row[columnNames[0]]);
+    handleSelect(allRowIds);
+  }
+  */
   return (
     <table>
       <thead>
         <tr>
+          {handleSelect ?
+            <th key={0}>
+              انتخاب
+              {/*
+              <LabelText>انتخاب همه</LabelText>
+              <ToggleButton onClick={() => handleSelectAll()}>ToggleButton</ToggleButton>
+              */}
+            </th>
+            :
+            <></>
+          }
           {columnNames.map((columnName, index) => (
-            <th key={index}>{columnName}</th>
+            <th key={index + 1}>{columnName}</th>
           ))}
+          {handleDelete ?
+            <th key={columnNames.length}>{'حذف'}</th>
+            :
+            <></>
+          }
         </tr>
       </thead>
       <tbody>
         {rows.map((row, rowIndex) => (
           <tr key={rowIndex}>
+            {handleSelect ?
+              <td>
+                <ToggleButton onClick={() => handleSelect(row[columnNames[0]])}>ToggleButton</ToggleButton>
+              </td>
+              :
+              <></>
+            }
             {columnNames.map((columnName, columnIndex) => (
               <td key={columnIndex}>{row[columnName]}</td>
             ))}
-            <td>
-              <DeleteButton onClick={() => onDeleteButton(row[columnNames[0]])}>Delete</DeleteButton>
-            </td>
+            {handleDelete ?
+              <td>
+                <DeleteButton onClick={() => onDeleteButton(row[columnNames[0]])}>Delete</DeleteButton>
+              </td>
+              :
+              <></>
+            }
           </tr>
         ))}
       </tbody>

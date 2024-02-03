@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Button from '../../../../components/Button';
 import LabelText from '../../../../components/LabelText';
 import BillAssignment from './AdminControls/BillAssignment/BillAssignment';
-import CreateBill from './AdminControls/CreateBill/CreateBill';
 import ManageAccounts from './AdminControls/ManageAccounts/ManageAccounts';
+import ManageBills from './AdminControls/ManageBill/ManageBills';
 import Payment from './AdminControls/Payment/Payment';
 import './AdminPanel.css';
 
@@ -27,11 +27,11 @@ function AdminPanel({account}) {
       </div >
     )
 
-  else if (controller === 'CREATE_BILL')
+  else if (controller === 'MANAGE_BILLS')
     return (
       <div className="navbar">
         {ReturnButton()}
-        <CreateBill />
+        <ManageBills account={account}/>
       </div >
     )
 
@@ -39,7 +39,7 @@ function AdminPanel({account}) {
     return (
       <div className="navbar">
         {ReturnButton()}
-        <BillAssignment />
+        <BillAssignment account={account}/>
       </div >
     )
 
@@ -47,7 +47,7 @@ function AdminPanel({account}) {
     return (
       <div className="navbar">
         {ReturnButton()}
-        <Payment />
+        <Payment account={account}/>
       </div >
     )
 
@@ -56,7 +56,7 @@ function AdminPanel({account}) {
       <div className="navbar">
         < LabelText fontSize={'2rem'} fontWeight={'bold'} theText={'پنل کنترل'} />
         <Button onClick={() => setController('MANAGE_ACCOUNTS')}><LabelText theText={'مدیریت حساب ها'} /></Button>
-        <Button onClick={() => setController('CREATE_BILL')}><LabelText theText={'ایجاد صورت حساب جدید'} /></Button>
+        <Button onClick={() => setController('MANAGE_BILLS')}><LabelText theText={'مدیریت صورت حساب ها'} /></Button>
         <Button onClick={() => setController('BILL_ASSIGNMENT')}><LabelText theText={'تخصیص صورت حساب موجود به کاربران'} /></Button>
         <Button onClick={() => setController('PAYMENT')}><LabelText theText={'ثبت بدهی پرداخت شده'} /></Button>
       </div >

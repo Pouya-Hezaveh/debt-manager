@@ -91,33 +91,60 @@ app.post('/delete-user', function (req, res) {
         askDataBase.deleteRow('USER', req.body.id).then((r) => res.send(r))
     }
 });
+
+app.post('/create-bill', function (req, res) {
+    const dateID = getRandomUUID();
+    const billID = getRandomUUID();
+
+    // req.body.key must be like: {id: "", password: ""}
+    if (askDataBase.isAdmin(req.body.key)) {
+        // req.body.newDate must be like: {id: "(uuid)", password: "", name: "", type: ""}
+        let dateValues = req.body.newDate.year ? { id: dateID, ...req.body.newDate } : { id: dateID, ...getCurrentTime() };
+
+        askDataBase.insertValues('DATE', dateValues)
+            .then(() => {
+                // req.body.newBill must be like: {name: "", password: "", name: "", type: ""}
+                let billValues = { id: billID, date_id: dateID, ...req.body.newBill };
+                return askDataBase.insertValues('BILL', billValues);
+            })
+            .then((r) => res.send(r))
+            .catch((err) => res.status(500).send(err));
+    }
+});
+
 /*
 SELECT *
 FROM "USER"
 INNER JOIN "BILLING_RECORD" ON "USER.id" = "BILLING_RECORD.user_id"
 INNER JOIN "BILL" ON "BILLING_RECORD.bill_id" = "BILL.id";
 */
-app.post('/create-bill', function (req, res) {
-    const dateID = getRandomUUID();
-    // req.body.key must be like: {id: "", password: ""}
-    if (askDataBase.isAdmin(req.body.key)) {
-        // req.body.newDate must be like: {id: "(uuid)", password: "", name: "", type: ""}
-        if (billDate)
-            askDataBase.insertValues('DATE', { id: dateID, ...req.body.newDate })
-        else
-            askDataBase.insertValues('DATE', { id: dateID, ...getCurrentTime() })
-
-        // req.body.newBill must be like: {name: "", password: "", name: "", type: ""}
-        askDataBase.insertValues('BILL', { date_id: dateID, ...req.body.newBill}).then((r) => res.send(r))
-    }
-})
-
 app.post('/get-bills', function (req, res) {
     // req.body.key must be like: {id: "", password: ""}
     if (askDataBase.isAdmin(req.body.key)) {
-        getTableWithColumnNames('BILL').then((r) => res.send(r))
+        askDataBase.runQuery(`
+            SELECT *
+            FROM "BILL"
+            INNER JOIN "DATE" ON "BILL".date_id = "DATE".id
+            `)
+            .then((r) => {
+                let temp = {}
+                temp.columnNames = Object.keys(JSON.parse(r)[0]);
+                temp.rows = JSON.parse(r)[0];
+                return temp;
+            })
+            .then((r) => {
+                console.log(r);
+                res.send(r);
+            })
+            .catch((error) => {
+                console.error("Error executing query:", error);
+                res.status(500).send("An error occurred while retrieving bills.");
+            });
+    } else {
+        res.status(403).send("Unauthorized");
     }
 });
+
 
 app.get("/", (req, res) => {
     res.send("<h1>THIS IS THE MAIN API ROOT.</h1>");

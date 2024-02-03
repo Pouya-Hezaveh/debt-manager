@@ -10,11 +10,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-    color: aquamarine;
+  color: aquamarine;
 }
 
-.persian-text{
+.persian-text {
   direction: rtl;
   text-align: right;
   margin: 20px;
+}
+
+.small-icon {
+  width: 2vw;
+  height: 2vw;
 }
