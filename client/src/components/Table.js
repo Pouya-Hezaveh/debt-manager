@@ -3,9 +3,14 @@ import DeleteButton from './DeleteButton';
 import './Table.css';
 import ToggleButton from './ToggleButton';
 
-const Table = ({ columnNames, rows, handleSelect, handleDelete }) => {
+const Table = ({ columnNames, rows, handleDelete, handleSelect }) => {
+  
   function onDeleteButton(id) {
     handleDelete(id);
+  }
+
+  function onSelectButton(id) {
+    handleSelect(id);
   }
   /*
   function handleSelectAll() {
@@ -43,7 +48,7 @@ const Table = ({ columnNames, rows, handleSelect, handleDelete }) => {
           <tr key={rowIndex}>
             {handleSelect ?
               <td>
-                <ToggleButton onClick={() => handleSelect(row[columnNames[0]])}>ToggleButton</ToggleButton>
+                <ToggleButton onClick={() => onSelectButton(row[columnNames[0]])}>ToggleButton</ToggleButton>
               </td>
               :
               <></>
