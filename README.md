@@ -20,7 +20,7 @@ Debt-Manager is a web application designed to assist accountants in managing mem
 
 1. Create a new PostgreSQL database named `debt-manager`
 2. Configure the features of `pg_config` constant in the file `<project_directory>/config/pg.config.js` to match your PostgreSQL settings.
-3. Run the following command to automatically initialize the database:
+3. Run the following script to automatically initialize the database:
 `node <project_directory>/config/db.initializer.js`
 
 #### 2. Run the Application
