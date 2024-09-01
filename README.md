@@ -8,7 +8,7 @@ Debt-Manager is a web application designed to assist accountants in managing mem
 - **Frontend Library:** React.js
 - **Backend Framework:** Express.js
 
-## Quick Start
+## Setup
 
 ### For Linux
 
@@ -18,9 +18,10 @@ Debt-Manager is a web application designed to assist accountants in managing mem
 
 #### 1. Configure the Application
 
-1. Create a new PostgreSQL database named `debt-manager`
-2. Configure the features of `pg_config` constant in the file `<project_directory>/config/pg.config.js` to match your PostgreSQL settings.
-3. Run the following script to automatically initialize the database:
+1. Run command `npm install` in the project directory to install dependencies.
+2. Create a new PostgreSQL database named `debt-manager`.
+3. Configure the features of `pg_config` constant in the file `<project_directory>/config/pg.config.js` to match your PostgreSQL settings.
+4. Run the following script to automatically initialize the database:
 `node <project_directory>/config/db.initializer.js`
 
 #### 2. Run the Application
@@ -28,3 +29,4 @@ Debt-Manager is a web application designed to assist accountants in managing mem
 1. Execute the following command:
 `sh <project_directory>/start-dev-server.sh`
 2. Open the application in your web browser by visiting [localhost:3000](http://localhost:3000).
+(server API runs on port 3001)
