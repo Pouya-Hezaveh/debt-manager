@@ -29,4 +29,4 @@ Debt-Manager is a web application designed to assist accountants in managing mem
 1. Execute the following command:
 `sh <project_directory>/start-dev-server.sh`
 2. Open the application in your web browser by visiting [localhost:3000](http://localhost:3000).
-(server API default port is 3001)
+(The default port for the server API is 3001.)
